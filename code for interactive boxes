@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Boxes</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .box {
+            width: 200px;
+            height: 100px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        .expanded {
+            width: 300px;
+            height: 200px;
+            background-color: #2ecc71;
+        }
+        .options {
+            display: none;
+            flex-direction: column;
+            margin-top: 10px;
+        }
+        .expanded .options {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" onclick="toggleBox(this)">Customer
+        <div class="options">
+            <button onclick="changeColor(event, this, 'red')">Red</button>
+            <button onclick="changeColor(event, this, 'blue')">Blue</button>
+            <button onclick="changeSize(event, this, 'small')">Small</button>
+            <button onclick="changeSize(event, this, 'large')">Large</button>
+        </div>
+    </div>
+    <div class="box" onclick="toggleBox(this)">Vendor
+        <div class="options">
+            <button onclick="changeColor(event, this, 'red')">Red</button>
+            <button onclick="changeColor(event, this, 'blue')">Blue</button>
+            <button onclick="changeSize(event, this, 'small')">Small</button>
+            <button onclick="changeSize(event, this, 'large')">Large</button>
+        </div>
+    </div>
+    <div class="box" onclick="toggleBox(this)">Relationship manager
+        <div class="options">
+            <button onclick="changeColor(event, this, 'red')">Red</button>
+            <button onclick="changeColor(event, this, 'blue')">Blue</button>
+            <button onclick="changeSize(event, this, 'small')">Small</button>
+            <button onclick="changeSize(event, this, 'large')">Large</button>
+        </div>
+    </div>
+    
+    <script>
+        function toggleBox(element) {
+            element.classList.toggle('expanded');
+        }
+        function changeColor(event, btn, color) {
+            event.stopPropagation();
+            btn.closest('.box').style.backgroundColor = color;
+        }
+        function changeSize(event, btn, size) {
+            event.stopPropagation();
+            let box = btn.closest('.box');
+            if (size === 'small') {
+                box.style.width = '150px';
+                box.style.height = '75px';
+            } else {
+                box.style.width = '350px';
+                box.style.height = '250px';
+            }
+        }
+    </script>
+</body>
+</html>
